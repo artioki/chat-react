@@ -30,7 +30,7 @@ function InputBox({clabackInput}) {
     if(istext !== isText){
       setIsText(istext);
     }
-    getElement.style.height = "20px";
+    getElement.style.height = "21px";
     getElement.style.height = getElement.scrollHeight+"px"
   }
   const ClickHandler = useCallback(
@@ -40,7 +40,7 @@ function InputBox({clabackInput}) {
       setIsText(false)
       refInput.current.style.height = "20px";
     },
-    [clabackInput,refInput,isText],
+    [clabackInput,refInput],
   );
   return (
     <ContainerInputBox onInput={resize} rows="1" >

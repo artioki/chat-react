@@ -20,7 +20,7 @@ const Textarea =  styled.textarea`
   margin: 15px 0;
   padding: 2px;
   resize: none;
-  height: 20px;
+  height: 21px;
   font-size: 14px;
   outline: none;
 

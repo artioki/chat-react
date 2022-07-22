@@ -1,13 +1,13 @@
 import React, {useCallback, useContext, useState} from 'react';
-import {ThemeMobile} from "../ChatFixed";
 import {ContainerWrapper} from "./ChatWrapperStyled";
 import { useSpring, animated } from 'react-spring'
 import PageVisibility from 'react-page-visibility';
+import mobileContext from "../mobileContext";
 
 function ChatWrapper({visible,setVisible}) {
   const [first, setFirst] = useState(true);
   const [wisibleWindow , setWisibleWindow ] = useState(true);
-  const mobile = useContext(ThemeMobile);
+  const mobile = useContext(mobileContext);
   const clickHandler = useCallback(
     () => {
       setVisible( state => !state );

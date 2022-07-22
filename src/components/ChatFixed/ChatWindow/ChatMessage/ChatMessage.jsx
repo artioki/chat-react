@@ -1,16 +1,23 @@
 import React from 'react';
-import {StyledMessage} from "./ChatMessageStyled";
+import {StyledBotMessage, StyledMessage} from "./ChatMessageStyled";
 
-function ChatMessage({key,message,you}) {
+
+
+function ChatMessage({message,you}) {
   return (
-    <StyledMessage key={key} you={you}>
-      <div className={'grow'}>
-
-      </div>
-      <div className={'message'}>
+    typeof you !== 'undefined'
+      ?
+      <StyledMessage you={you}>
+        <div className={'grow'}/>
+        <div className={'message'}>
+          {message}
+        </div>
+      </StyledMessage>
+      :
+      <StyledBotMessage>
         {message}
-      </div>
-    </StyledMessage>
+      </StyledBotMessage>
+
   );
 }
 

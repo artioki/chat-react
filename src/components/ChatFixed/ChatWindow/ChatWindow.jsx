@@ -1,31 +1,22 @@
-import React, {useContext, useState} from 'react';
-import {ThemeMobile} from "../ChatFixed";
+import React, {useContext} from 'react';
 import {DivWindowChat} from "./ChatWindowStyled";
 import TextBox from "./TextBox/TextBox";
 import InputBox from "./InputBox/InputBox";
 import ChatMessage from "./ChatMessage/ChatMessage";
+import mobileContext from "../mobileContext";
 
-function ChatWindow({visible=false}) {
-  const [messeges, setState] = useState(
-    [{key:1,message:"Бродит, говорят, по зоне ходячая " +
-        "аномалия — непьющий и некурящий сталкер. Приманивается на запах молочка или " +
-        "манной каши. Способ дистанционного обнаружения — на расстоянии 200 метров от объекта " +
-        "счетчик Гейгера зашкаливает.",you:false}]);
-  const mobile = useContext(ThemeMobile);
-  const writeMesage = (element)=>{
-    setState(
-      [...messeges,{message:element.current.value,you:true}]
-    )
-  }
+
+
+function ChatWindow({visible=false,inputCallback,messeges}) {
+  const mobile = useContext(mobileContext);
+
 
   return (
     <DivWindowChat mobile={mobile} visible={visible}>
-      <InputBox clabackInput={writeMesage}>
-
-      </InputBox>
+      <InputBox clabackInput={inputCallback} />
       <TextBox >
-        {messeges.map((elem)=>{
-          return <ChatMessage {...elem}></ChatMessage>
+        {messeges.map((elem,idx)=>{
+          return <ChatMessage {...elem} key={idx}></ChatMessage>
         })}
       </TextBox>
     </DivWindowChat>

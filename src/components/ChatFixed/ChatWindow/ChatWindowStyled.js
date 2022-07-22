@@ -11,7 +11,7 @@ const DivWindowChat = styled.div`
   box-shadow: 0 8px 16px rgba(51, 51, 51, 0.2);
   background-color: #fff;
   
-  padding:16px;
+  padding:8px 16px 16px 16px;
   margin: ${(props => props.mobile?'0':'0 15px 15px 15px')};
   max-height: ${(props => props.mobile?'100%':'740px')};
 

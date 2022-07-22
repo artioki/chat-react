@@ -3,6 +3,7 @@ import {DivText} from "./TextBoxStyled";
 function TextBox({children}) {
   return (
     <DivText >
+      <div/>
       {children}
     </DivText>
   );

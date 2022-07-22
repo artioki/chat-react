@@ -3,25 +3,31 @@ import {useMediaQuery} from "@mui/material";
 import {ChatFixedStyled} from "./ChatFixedStyled";
 import ChatWrapper from "./ChatWrapper/ChatWrapper";
 import ChatWindow from "./ChatWindow/ChatWindow";
+import mobileContext from "./mobileContext";
 
-const ThemeMobile = React.createContext();
 
-function ChatContainer() {
-  const [visible, setVisible] = useState(false);
+
+
+function ChatFixed({messeges,submitCallback}) {
+  const [visibleWindow, setVisibleWindow] = useState(false);
   const mobile = useMediaQuery('(max-width:600px)');
+
   return (
-    <ThemeMobile.Provider value={mobile}>
+    <mobileContext.Provider value={mobile}>
       <ChatFixedStyled mobile={mobile}>
-        <ChatWindow visible={visible}>
-
-        </ChatWindow>
-        <ChatWrapper visible={visible} setVisible={setVisible}>
-
-        </ChatWrapper>
+        <ChatWindow visible={visibleWindow} messeges={messeges} inputCallback={submitCallback} />
+        <ChatWrapper visible={visibleWindow} setVisible={setVisibleWindow}/>
       </ChatFixedStyled>
-    </ThemeMobile.Provider>
+    </mobileContext.Provider>
   );
 }
-
-export default ChatContainer;
-export {ThemeMobile}
+/**
+ * @param {JSX.key} key
+ * @param {JSX.Element | string} message
+ * @param {undefined | boolean} you
+ */
+const createMessage = (key,message,you) =>{
+  return {key:key,message:message,you:you}
+}
+export default ChatFixed;
+export {createMessage}
