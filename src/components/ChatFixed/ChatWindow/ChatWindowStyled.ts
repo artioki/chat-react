@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-const DivWindowChat = styled.div`
+interface DivWindowChatInterface{
+    mobile:boolean;
+    visible:boolean;
+}
+
+const DivWindowChat = styled.div<DivWindowChatInterface>`
   flex-grow: 1;
   display: ${(props => props.visible?'flex':'none')};
   flex-direction: column-reverse;

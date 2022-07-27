@@ -1,43 +1,48 @@
-import React, {useCallback, useContext, useState} from 'react';
+import React, {useCallback, useContext, useState,useEffect,FC} from 'react';
 import {ContainerWrapper, Svg} from "./ChatWrapperStyled";
-import PageVisibility from 'react-page-visibility';
 import mobileContext from "../mobileContext";
+import {useDocumentVisibility} from "@artioki/react-document-visibility-and-responsive";
 
-function ChatWrapper({visible,setVisible}) {
-  const [visibility , setvisibility ] = useState(true);
+interface chatFixedInterface{
+  visibleWindow:boolean,
+  setVisibleWindow:(value: (((prevState: boolean) => boolean) | boolean)) => void
+}
+
+const ChatWrapper:FC<chatFixedInterface> = ({visibleWindow,setVisibleWindow}) =>{
+  const { count, visible, onVisibilityChange } = useDocumentVisibility();
   const [firstHover, setFirstHover] = useState(false);
   const mobile = useContext(mobileContext);
+
+
   const clickHandler = useCallback(
-    () => {
-      setVisible( state => !state );
+      () => {
+        setVisibleWindow( state => !state );
 
-    },
-    [setVisible],
+      },
+      [setVisibleWindow],
   );
-
-
-
+  useEffect(() => {
+    onVisibilityChange(isVisible => {
+      setFirstHover(!isVisible);
+    })
+  }, [setFirstHover])
+  
   return (
     <>
-      <PageVisibility onChange={ isVisible => {
-        setvisibility(isVisible);
-        setFirstHover(!isVisible);
-      }}
-        ></PageVisibility>
-    <ContainerWrapper mobile={mobile} visible={visible}>
+    <ContainerWrapper mobile={Boolean(mobile)} visible={visibleWindow}>
       <button onMouseEnter={()=> setFirstHover(true)}  onClick={clickHandler}>
-        {visibility
+        {visible
           ?
           firstHover ?
-            visible ?
-              <Svg className={'animationSwing'} style={{marginTop:'-7px'}} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              visibleWindow ?
+              <svg className={'animationSwing'} style={{marginTop:'-7px'}} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 2L14 14" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
                 <path d="M14 2L2 14" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-              </Svg>
+              </svg>
               :
-              <Svg className={'animationRotate'}  width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className={'animationRotate'}  width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 26L4 30V26H2C1.46957 26 0.960859 25.7893 0.585786 25.4142C0.210714 25.0391 0 24.5304 0 24V1C0 0.734784 0.105357 0.48043 0.292893 0.292893C0.48043 0.105357 0.734784 0 1 0H23C23.2652 0 23.5196 0.105357 23.7071 0.292893C23.8946 0.48043 24 0.734784 24 1V24C24 24.5304 23.7893 25.0391 23.4142 25.4142C23.0391 25.7893 22.5304 26 22 26H11Z" fill="white"/>
-              </Svg>
+              </svg>
             :
             <>
               <Svg className={'animationOpacityForwards'} delay={0} time={0.5} width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">

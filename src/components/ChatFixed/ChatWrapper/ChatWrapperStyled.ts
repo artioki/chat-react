@@ -1,5 +1,8 @@
 import styled,{keyframes,css} from "styled-components";
-
+interface ContainerWrapperInterface{
+    mobile:boolean;
+    visible:boolean;
+}
 const swingFrames = keyframes`
   0% {
     transform: translateY(15px);
@@ -19,7 +22,7 @@ const rotateFrames = keyframes`
   }
 `
 
-const ContainerWrapper = styled.div`
+const ContainerWrapper = styled.div<ContainerWrapperInterface>`
   margin-left: auto;
   & button{
     border: none;
@@ -69,16 +72,19 @@ const OpacityForwardsFrames = keyframes`
     transform: translateY(0px);
   }
 `;
-
-const animationOpacity = props =>
+interface animationInterface{
+    time:string|number;
+    delay:string|number;
+}
+const animationOpacity = (props:any) =>
   css`
     ${opacityFrames} ${props.time?props.time+'s':1+'s'} linear ${props.delay?props.delay+'s':1+'s'};
   `
-const animationOpacityForwards = props =>
+const animationOpacityForwards = (props:any) =>
   css`
     ${OpacityForwardsFrames} ${props.time?props.time+'s':1+'s'} linear ${props.delay?props.delay+'s':1+'s'};
   `
-const Svg = styled.svg`
+const Svg = styled.svg<animationInterface>`
   position: fixed;
   width: 58px;
   margin-top:-14px;

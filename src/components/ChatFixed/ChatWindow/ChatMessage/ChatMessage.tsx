@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{FC} from 'react';
 import {StyledBotMessage, StyledMessage} from "./ChatMessageStyled";
+import messageInterface from "../../../../Types/messageInterface";
 
 
 
-function ChatMessage({message,you}) {
+const ChatMessage:FC<messageInterface> = ({message,you}) => {
   return (
     typeof you !== 'undefined'
       ?

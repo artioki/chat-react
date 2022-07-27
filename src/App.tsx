@@ -1,15 +1,16 @@
 import ChatFixed, {createMessage} from "./components/ChatFixed/ChatFixed";
-import {useState} from "react";
+import  {useState,FC} from "react";
+import messageInterface from "./Types/messageInterface";
 
 
 
-function App() {
+const App:FC = () => {
 
-  const onClick = (numberButoon) =>{
+  const onClick = (numberButoon:number) =>{
     let message = `вы нажали на кнопку:${numberButoon}`
     return createMessage(numberButoon,(<p>{message}</p>),undefined)
   }
-  const [messeges, setMesseges] = useState(
+  const [messeges, setMesseges] = useState<messageInterface[]>(
     [
       {key:2,message:
           <>
@@ -33,13 +34,16 @@ function App() {
           "манной каши. Способ дистанционного обнаружения — на расстоянии 200 метров от объекта " +
           "счетчик Гейгера зашкаливает.",you:false},
     ]);
-  const inputCallback = (element)=>{
-    setMesseges(
-      [...messeges,{message:element.current.value,you:true}]
-    )
+  const inputCallback = (element:React.RefObject<HTMLTextAreaElement>)=>{
+      if(element.current){
+          setMesseges(
+              [...messeges,{key:(new Date()).toString(),message:element.current.value,you:true}]
+          )
+      }
+
   }
   return (
-    <ChatFixed submitCallback={inputCallback} messeges={messeges}/>
+    <ChatFixed submitCallback={inputCallback} messages={messeges}/>
   );
 }
 

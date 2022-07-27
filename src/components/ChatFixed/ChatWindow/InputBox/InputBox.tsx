@@ -1,51 +1,67 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState,FC} from 'react';
 import {ContainerInputBox, Textarea, Button, Form} from "./InputBoxStyled";
-import Picker from "emoji-picker-react";
+import Picker, {IEmojiData} from "emoji-picker-react";
 
+interface InputBoxInterface{
+    inputCallback:(message:React.RefObject<HTMLTextAreaElement>)=>void
+}
 
-function InputBox({ inputCallback}) {
+const InputBox:FC<InputBoxInterface> = ({ inputCallback}) => {
   const [isText, setIsText] = useState(false);
-  const refInput = useRef(null);
-  const refForm = useRef(null);
+  const refInput = useRef<HTMLTextAreaElement>(null);
+  const refForm = useRef<HTMLFormElement>(null);
   const [chosenEmoji, setChosenEmoji] = useState(false);
-
-  const onEmojiClick = (event, emojiObject) => {
-    refInput.current.value += emojiObject.emoji;
-    setChosenEmoji(false);
-    resize();
+  const onEmojiClick = (event:React.MouseEvent<Element, MouseEvent>, emojiObject:IEmojiData):void => {
+    if(refInput.current){
+        refInput.current.value += emojiObject.emoji;
+        setChosenEmoji(false);
+        resize();
+    }
   };
 
-  const resize = (e) => {
+  const resize = () => {
     let getElement = refInput.current
-    let istext = Boolean(getElement.value)
-    if(istext !== isText){
-      setIsText(istext);
-    }
-    if(getElement.scrollHeight !== getElement.style.height){
-      getElement.style.height = "18px";
-      getElement.style.height = Math.min(getElement.scrollHeight,54)+"px"
-      refForm.current.style.height = Math.min(getElement.scrollHeight+30,54+30)+"px"
+    if(getElement){
+        let istext = Boolean(getElement.value)
+        if(istext !== isText){
+            setIsText(istext);
+        }
+        if(getElement.scrollHeight !== Number(getElement.style.height)){
+            getElement.style.height = "18px";
+            getElement.style.height = Math.min(getElement.scrollHeight,54)+"px"
+            if(refForm.current){
+                refForm.current.style.height = Math.min(getElement.scrollHeight+30,54+30)+"px"
+            }
+        }
     }
 
   }
   const ClickHandler = useCallback(
     () => {
-      refInput.current.value = refInput.current.value.trimStart()
-      if(refInput.current.value !== ''){
-        inputCallback(refInput);
-      }
-      refInput.current.value = "";
-      setIsText(false)
-      resize()
+        if(refInput.current){
+            refInput.current.value = refInput.current.value.trimStart()
+            if(refInput.current.value !== ''){
+                inputCallback(refInput);
+            }
+            refInput.current.value = "";
+            setIsText(false)
+            resize()
+        }
+
     },
     [inputCallback,refInput],
   );
   useEffect(() => {
     let getinput = refInput.current
-    const InputListener = (e) =>{if (e.keyCode === 13 && e.ctrlKey) {ClickHandler()}}
-    getinput.addEventListener('keydown', InputListener, false);
+    const InputListener = (e: KeyboardEvent) =>{if (e.keyCode === 13 && e.ctrlKey) {ClickHandler()}}
+    if(getinput){
+        getinput.addEventListener('keydown', InputListener, false);
+    }
     return () => {
-      getinput.removeEventListener('keydown',InputListener)
+        if(getinput){
+            getinput.removeEventListener('keydown',InputListener)
+        }
+
     };
   }, [ClickHandler, refInput])
 
@@ -63,7 +79,7 @@ function InputBox({ inputCallback}) {
         </Button>
         <Picker disableSearchBar={true}  pickerStyle={{margin:'-310px 0px -330px 0px',display:chosenEmoji?'flex':'none',width:'348px',height:'300px',position: "absolute"}} onEmojiClick={onEmojiClick} />
         <Form ref={refForm}>
-          <Textarea rows="1" ref={refInput} onInput={resize} placeholder={'Введите сообщение...'}>
+          <Textarea rows={1} ref={refInput} onInput={resize} placeholder={'Введите сообщение...'}>
           </Textarea>
         </Form>
         {isText

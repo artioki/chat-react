@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
-
-const StyledMessage = styled.div`
+interface StyledMessageInterface{
+    you:boolean;
+}
+const StyledMessage = styled.div<StyledMessageInterface>`
   display: flex;
   flex-direction: ${(props)=>props.you?' row' : 'row-reverse'};
   margin: 10px;
