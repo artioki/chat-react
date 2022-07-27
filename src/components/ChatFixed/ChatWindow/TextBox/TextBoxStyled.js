@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const DivText = styled.div`
   display: flex;
@@ -24,4 +24,4 @@ const DivText = styled.div`
     border-radius: 5px;
   }
 `;
-export {DivText}
+export {DivText};

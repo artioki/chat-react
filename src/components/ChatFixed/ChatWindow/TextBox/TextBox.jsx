@@ -1,5 +1,5 @@
 import React from 'react';
-import {DivText} from "./TextBoxStyled";
+import {DivText} from './TextBoxStyled';
 function TextBox({children}) {
   return (
     <DivText >
