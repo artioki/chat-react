@@ -1,4 +1,4 @@
-import styled,{keyframes,css} from "styled-components";
+import styled,{keyframes,css} from 'styled-components';
 interface ContainerWrapperInterface{
     mobile:boolean;
     visible:boolean;
@@ -12,7 +12,7 @@ const swingFrames = keyframes`
     transform: translateY(0);
     opacity: 1;
   }
-`
+`;
 const rotateFrames = keyframes`
   0% {
     transform: rotate( 90deg );
@@ -20,7 +20,7 @@ const rotateFrames = keyframes`
   100% {
     transform: rotate( 0deg );
   }
-`
+`;
 
 const ContainerWrapper = styled.div<ContainerWrapperInterface>`
   margin-left: auto;
@@ -31,7 +31,7 @@ const ContainerWrapper = styled.div<ContainerWrapperInterface>`
     ${(props => props.mobile
       ? props.visible
         ?'top:15px;right:15px;'
-        :'bottom:15px;right:15px;' 
+        :'bottom:15px;right:15px;'
       :'')}
     padding: 0;
     width: 58px;
@@ -49,7 +49,7 @@ const ContainerWrapper = styled.div<ContainerWrapperInterface>`
     }
     
   }
-`
+`;
 
 const opacityFrames = keyframes`
   0% {
@@ -79,11 +79,11 @@ interface animationInterface{
 const animationOpacity = (props:any) =>
   css`
     ${opacityFrames} ${props.time?props.time+'s':1+'s'} linear ${props.delay?props.delay+'s':1+'s'};
-  `
+  `;
 const animationOpacityForwards = (props:any) =>
   css`
     ${OpacityForwardsFrames} ${props.time?props.time+'s':1+'s'} linear ${props.delay?props.delay+'s':1+'s'};
-  `
+  `;
 const Svg = styled.svg<animationInterface>`
   position: fixed;
   width: 58px;
@@ -98,6 +98,6 @@ const Svg = styled.svg<animationInterface>`
     animation: ${animationOpacityForwards};
     animation-fill-mode: forwards;
   }
-`
+`;
 
-export {ContainerWrapper,Svg}
+export {ContainerWrapper,Svg};

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ContainerInputBox = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const Textarea =  styled.textarea`
   font-size: 14px;
   line-height: 16px;
   min-height: 18px;
-  max-height: ${(props => `${3*18}px`)};
+  max-height: ${`${3*18}px`};
   &::-webkit-scrollbar {
     width: 0;
   }
@@ -50,4 +50,4 @@ const Button = styled.button`
     fill:#0848C0;
   }
 `;
-export {ContainerInputBox,Form,Textarea,Button}
+export {ContainerInputBox,Form,Textarea,Button};

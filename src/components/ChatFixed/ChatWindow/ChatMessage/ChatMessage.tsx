@@ -1,6 +1,6 @@
 import React,{FC} from 'react';
-import {StyledBotMessage, StyledMessage} from "./ChatMessageStyled";
-import messageInterface from "../../../../Types/messageInterface";
+import {StyledBotMessage, StyledMessage} from './ChatMessageStyled';
+import messageInterface from '../../../../Types/messageInterface';
 
 
 
@@ -20,7 +20,7 @@ const ChatMessage:FC<messageInterface> = ({message,you}) => {
       </StyledBotMessage>
 
   );
-}
+};
 
 
 export default ChatMessage;

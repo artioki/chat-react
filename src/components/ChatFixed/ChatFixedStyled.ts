@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ChatFixedStyledInterface{
-    mobile:boolean
+    mobile:boolean;
 }
 
 const ChatFixedStyled = styled.div`
@@ -24,8 +24,8 @@ const ChatFixedStyled = styled.div`
   & > * + *{
     margin-top: ${((props:ChatFixedStyledInterface) => props.mobile?'0':'15px')};
   }
-`
+`;
 
 
 
-export { ChatFixedStyled }
+export { ChatFixedStyled };

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface DivWindowChatInterface{
     mobile:boolean;
@@ -20,4 +20,5 @@ const DivWindowChat = styled.div<DivWindowChatInterface>`
   max-height: ${(props => props.mobile?'100%':'740px')};
 
 `;
-export {DivWindowChat}
+export {DivWindowChat};
+

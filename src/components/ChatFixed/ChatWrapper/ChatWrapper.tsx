@@ -1,15 +1,15 @@
 import React, {useCallback, useContext, useState,useEffect,FC} from 'react';
-import {ContainerWrapper, Svg} from "./ChatWrapperStyled";
-import mobileContext from "../mobileContext";
-import {useDocumentVisibility} from "@artioki/react-document-visibility-and-responsive";
+import {ContainerWrapper, Svg} from './ChatWrapperStyled';
+import mobileContext from '../mobileContext';
+import {useDocumentVisibility} from '@artioki/react-document-visibility-and-responsive';
 
 interface chatFixedInterface{
-  visibleWindow:boolean,
-  setVisibleWindow:(value: (((prevState: boolean) => boolean) | boolean)) => void
+  visibleWindow:boolean;
+  setVisibleWindow:(value: (((prevState: boolean) => boolean) | boolean)) => void;
 }
 
 const ChatWrapper:FC<chatFixedInterface> = ({visibleWindow,setVisibleWindow}) =>{
-  const { count, visible, onVisibilityChange } = useDocumentVisibility();
+  const { visible, onVisibilityChange } = useDocumentVisibility();
   const [firstHover, setFirstHover] = useState(false);
   const mobile = useContext(mobileContext);
 
@@ -24,9 +24,8 @@ const ChatWrapper:FC<chatFixedInterface> = ({visibleWindow,setVisibleWindow}) =>
   useEffect(() => {
     onVisibilityChange(isVisible => {
       setFirstHover(!isVisible);
-    })
-  }, [setFirstHover])
-  
+    });
+  }, [onVisibilityChange, setFirstHover]);
   return (
     <>
     <ContainerWrapper mobile={Boolean(mobile)} visible={visibleWindow}>
@@ -72,6 +71,6 @@ const ChatWrapper:FC<chatFixedInterface> = ({visibleWindow,setVisibleWindow}) =>
     </ContainerWrapper>
     </>
   );
-}
+};
 
 export default ChatWrapper;

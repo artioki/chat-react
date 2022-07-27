@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface StyledMessageInterface{
     you:boolean;
@@ -23,7 +23,7 @@ const StyledMessage = styled.div<StyledMessageInterface>`
     flex-grow: 1;
     min-width: 50px;
   }
-`
+`;
 
 const StyledBotMessage = styled.div`
   font-family: 'Lato', sans-serif;
@@ -68,5 +68,5 @@ const StyledBotMessage = styled.div`
     width: 100%;
     margin-bottom: 8px;
   }
-`
-export {StyledBotMessage,StyledMessage}
+`;
+export {StyledBotMessage,StyledMessage};

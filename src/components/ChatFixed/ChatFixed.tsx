@@ -1,15 +1,15 @@
 import React, {useState,FC} from 'react';
-import {useMediaQuery} from "@mui/material";
-import {ChatFixedStyled} from "./ChatFixedStyled";
-import ChatWrapper from "./ChatWrapper/ChatWrapper";
-import ChatWindow from "./ChatWindow/ChatWindow";
-import mobileContext from "./mobileContext";
-import messageInterface from "../../Types/messageInterface";
+import {useMediaQuery} from '@mui/material';
+import {ChatFixedStyled} from './ChatFixedStyled';
+import ChatWrapper from './ChatWrapper/ChatWrapper';
+import ChatWindow from './ChatWindow/ChatWindow';
+import mobileContext from './mobileContext';
+import messageInterface from '../../Types/messageInterface';
 
 
 interface chatFixedInterface{
-    messages:messageInterface[],
-    submitCallback:(message:React.RefObject<HTMLTextAreaElement>)=>void
+    messages:messageInterface[];
+    submitCallback:(message:React.RefObject<HTMLTextAreaElement>)=>void;
 }
 
 const ChatFixed:FC<chatFixedInterface> = ({messages,submitCallback}) =>{
@@ -24,10 +24,10 @@ const ChatFixed:FC<chatFixedInterface> = ({messages,submitCallback}) =>{
       </ChatFixedStyled>
     </mobileContext.Provider>
   );
-}
+};
 
 const createMessage = (key: any, message: any, you: any) =>{
-  return {key:key,message:message,you:you}
-}
+  return {key:key,message:message,you:you};
+};
 export default ChatFixed;
-export {createMessage}
+export {createMessage};

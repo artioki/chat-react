@@ -1,7 +1,7 @@
 interface messageInterface{
-    key: string|number
-    message:JSX.Element|string|number,
-    you?:boolean
+    key: string|number;
+    message:JSX.Element|string|number;
+    you?:boolean;
 }
 
-export default messageInterface
+export default messageInterface;
