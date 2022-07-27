@@ -10,7 +10,7 @@ import mobileContext from "./mobileContext";
 
 function ChatFixed({messeges,submitCallback}) {
   const [visibleWindow, setVisibleWindow] = useState(false);
-  const mobile = useMediaQuery('(max-width:600px)');
+  const mobile = useMediaQuery('(max-width:410px)');
 
   return (
     <mobileContext.Provider value={mobile}>

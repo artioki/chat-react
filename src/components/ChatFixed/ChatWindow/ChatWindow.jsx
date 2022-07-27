@@ -13,7 +13,7 @@ function ChatWindow({visible=false,inputCallback,messeges}) {
 
   return (
     <DivWindowChat mobile={mobile} visible={visible}>
-      <InputBox clabackInput={inputCallback} />
+      <InputBox inputCallback={inputCallback} />
       <TextBox >
         {messeges.map((elem,idx)=>{
           return <ChatMessage {...elem} key={idx}></ChatMessage>

@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 const ChatFixedStyled = styled.div`
   & *{
-    font-family: 'Lato','PT Sans', sans-serif;
-
+    font-family:'PT Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -17,7 +16,7 @@ const ChatFixedStyled = styled.div`
   flex-direction: column;
   margin:${(props => props.mobile?'0':'15px')};
   height:${(props => props.mobile?'100%':'calc(100vh - 30px)')};
-  width:${(props => props.mobile?'100%':'410px')};
+  width:${(props => props.mobile?'100%':'380px')};
   & > * + *{
     margin-top: ${(props => props.mobile?'0':'15px')};
   }

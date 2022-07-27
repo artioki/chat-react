@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledMessage = styled.div`
   display: flex;
-  flex-direction: ${(props)=>props.you?'row-reverse':' row' };
+  flex-direction: ${(props)=>props.you?' row' : 'row-reverse'};
   margin: 10px;
   
   & .message{
@@ -12,8 +12,9 @@ const StyledMessage = styled.div`
     padding: 6px 12px;
     
     border-radius: 8px;
-    box-shadow: 0 0 1px 1px #D6DADE;
-    background-color: #F3F5F7;
+    box-shadow: 0 0 1px 1px ${(props)=>props.you?'rgba(8, 72, 192, 0.30)' : '#D6DADE'};
+    background-color: ${(props)=>props.you?'rgba(8, 72, 192, 0.22)' : '#F3F5F7'};
+
     
   }
   & .grow{
@@ -23,7 +24,7 @@ const StyledMessage = styled.div`
 `
 
 const StyledBotMessage = styled.div`
-  font-family: 'Lato','PT Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
   margin:0 10px 18px 10px;
 
   p{
@@ -36,6 +37,7 @@ const StyledBotMessage = styled.div`
     line-height: 22px;
   }
   h1{
+    font-family: 'Lato',sans-serif;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -55,6 +57,7 @@ const StyledBotMessage = styled.div`
     box-shadow: 0 2px 4px rgba(44, 48, 52, 0.15);
     border-radius: 8px;
     padding: 15px 15px;
+    
     text-align: center;
     font-style: normal;
     font-weight: 400;

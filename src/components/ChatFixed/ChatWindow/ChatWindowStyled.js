@@ -12,7 +12,6 @@ const DivWindowChat = styled.div`
   background-color: #fff;
   
   padding:8px 16px 16px 16px;
-  margin: ${(props => props.mobile?'0':'0 15px 15px 15px')};
   max-height: ${(props => props.mobile?'100%':'740px')};
 
 `;

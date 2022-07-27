@@ -9,21 +9,33 @@ const ContainerInputBox = styled.div`
   box-shadow: 0 0 1px 1px #D6DADE;
   border-radius: 2px;
   background: #FFFFFF;
-  
 `;
-
+const Form = styled.form`
+  width: 100%;
+  height: 48px;
+`;
 const Textarea =  styled.textarea`
+  &::placeholder {
+    
+  }
   box-sizing: border-box;
-  overflow: hidden;
   flex-grow: 1;
   border: none;
   margin: 15px 0;
-  padding: 2px;
+  padding: 0;
   resize: none;
-  height: 21px;
-  font-size: 14px;
   outline: none;
-
+  font-family: 'PT Sans',sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  
+  font-size: 14px;
+  line-height: 16px;
+  min-height: 18px;
+  max-height: ${(props => `${3*18}px`)};
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 `;
 const Button = styled.button`
   display: block;
@@ -38,4 +50,4 @@ const Button = styled.button`
     fill:#0848C0;
   }
 `;
-export {ContainerInputBox,Textarea,Button}
+export {ContainerInputBox,Form,Textarea,Button}
