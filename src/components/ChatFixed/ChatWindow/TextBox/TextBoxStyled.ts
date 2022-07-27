@@ -24,4 +24,5 @@ const DivText = styled.div`
     border-radius: 5px;
   }
 `;
+
 export {DivText};
