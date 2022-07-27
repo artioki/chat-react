@@ -1,12 +1,16 @@
-import React from 'react';
+import React,{FC}from 'react';
 import {DivText} from './TextBoxStyled';
-function TextBox({children}) {
+
+interface ChatWindowInterface{
+    children:React.ReactNode;
+}
+const TextBox:FC<ChatWindowInterface> = ({children}) => {
   return (
     <DivText >
       <div/>
       {children}
     </DivText>
   );
-}
+};
 
 export default TextBox;
